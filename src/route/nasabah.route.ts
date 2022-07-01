@@ -6,5 +6,6 @@ const nasabahRouter = Router();
 
 /* GET programming languages. */
 nasabahRouter.get('/batch',authenticateToken, getNasabah);
+nasabahRouter.get('/batch-no-auth', getNasabah);
 
 export default nasabahRouter;
