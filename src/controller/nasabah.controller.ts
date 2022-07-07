@@ -35,7 +35,7 @@ export async function searchNasabah(req: Request, res: Response, next: NextFunct
         let _ktp = <string>req.query.id_nomor ?? '%';
         let _npwp = <string>req.query.npwp ?? '%';
         const nasabah = await dbCore
-            .first('nomor_nas', 'nama_nas', 'alamat', 'id_nomor','npwp')
+            .select('nomor_nas', 'nama_nas', 'alamat', 'id_nomor','npwp')
             .from('t_nasabah')
             .whereILike('nomor_nas', _scin)
             .andWhereILike('nama_nas', _nama)
