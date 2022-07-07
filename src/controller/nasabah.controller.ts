@@ -30,10 +30,10 @@ export async function searchNasabah(req: Request, res: Response, next: NextFunct
     let _response: IResponse = { status: false, message: '' };
     try {
         let _scin = <string>req.query.nomor_nas ?? '%';
-        let _nama = <string>req.query.nama_nas ?? '%';
-        let _alamat = <string>req.query.alamat ?? '%';
-        let _ktp = <string>req.query.id_nomor ?? '%';
-        let _npwp = <string>req.query.npwp ?? '%';
+        let _nama = '%'+<string>req.query.nama_nas+'%' ?? '%';
+        let _alamat = '%'+<string>req.query.alamat+'%' ?? '%';
+        let _ktp = <string>req.query.id_nomor+'%' ?? '%';
+        let _npwp = <string>req.query.npwp+'%' ?? '%';
         const nasabah = await dbCore
             .select('nomor_nas', 'nama_nas', 'alamat', 'id_nomor','npwp')
             .from('t_nasabah')
