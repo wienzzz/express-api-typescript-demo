@@ -1,6 +1,6 @@
 import express, { Express, Request, Response} from 'express'
 import dotenv from 'dotenv';
-import nasabahRouter from './route/nasabah.route';
+import itemRouter from './route/item.route';
 import loginRouter from './route/login.route';
 
 dotenv.config();
@@ -12,7 +12,7 @@ app.use(express.json());
 app.get('/', (req: Request, res: Response) => {
   res.json({'message': 'ok'});
 })
-app.use('/nasabah', nasabahRouter);
+app.use('/item', itemRouter);
 app.use('/login',loginRouter);
 /* Error handler middleware */
 

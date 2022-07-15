@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { Response, Request, NextFunction } from 'express';
 import { IResponse } from '../interface/response.interface';
-import { dbCore } from '../config/db.config';
+import { myDatabase } from '../config/db.config';
 dotenv.config();
 let _response: IResponse = { status: false, message: ''};
 export function authenticateToken(req: Request, res: Response, next: NextFunction): Response<any, Record<string, any>> | undefined {
@@ -31,13 +31,13 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
         }
       }
       let _token = (<any>decoded).token;
-      dbCore
-        .count('user_id as jumlah')
+      myDatabase
+        .count('user_id as counter')
         .from('t_user')
         .where({ 'api_key': _token })
         .first()
         .then((result) => {
-          if (result.jumlah) {
+          if (result.counter) {
             next()
           } else {
             _response.status = false;

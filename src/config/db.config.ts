@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import knex, { Knex } from 'knex';
 
 dotenv.config();
-export const configCore = {
+export const config = {
   client: 'mysql2',
   connection: {
     host: process.env.DB_HOST,
@@ -13,5 +13,6 @@ export const configCore = {
   } 
 } as Knex.Config;
 
-export const dbCore: Knex = knex(configCore)
+
+export const myDatabase: Knex = knex(config)
 
